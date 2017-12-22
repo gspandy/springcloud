@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springCloudApiUser" />
+        <module name="springCloudApp" />
+        <module name="springCloudConfigServer" />
+        <module name="springCloudEurekaServer" />
+      </profile>
+      <profile name="Annotation profile for springCloud" enabled="true">
+        <sourceOutputDir name="../springCloudApp/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../springCloudApp/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springCloudApp (1)" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="springcloud" target="1.6" />
+      <module name="springCloudApi" target="1.7" />
+      <module name="springCloudApiUser" target="1.7" />
+      <module name="springCloudApp" target="1.7" />
+      <module name="springCloudApp (1)" target="1.7" />
+      <module name="springCloudConfigServer" target="1.6" />
+      <module name="springCloudEurekaServer" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
