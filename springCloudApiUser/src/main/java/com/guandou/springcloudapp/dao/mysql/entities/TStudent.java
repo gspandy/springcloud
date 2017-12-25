@@ -1,8 +1,11 @@
 package com.guandou.springcloudapp.dao.mysql.entities;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * student
  */
+@XmlRootElement(name = "tStudent")
 public class TStudent {
     /**
      * student.Id

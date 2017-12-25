@@ -24,7 +24,7 @@ public class IndexController {
         t.setAge(44);
         t.setName("ces");
         t.setId(32);
-        tStudentService.add(t);
+        tStudentService.update(t);
 		String getConf="hello, sping Cloud!"+redisService.getStr("test");
 		return getConf;
 	}

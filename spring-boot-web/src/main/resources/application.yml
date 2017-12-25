@@ -10,3 +10,5 @@ sping:
              http://127.0.0.1:8888
           name: 
              spring-boot-web
+          profile:
+            dev
