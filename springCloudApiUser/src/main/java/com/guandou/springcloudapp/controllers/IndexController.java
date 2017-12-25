@@ -19,13 +19,13 @@ public class IndexController {
 	@RequestMapping("/hello")
 	public String hellow() {
         logger.info("启动 hello接口");
-      /*  redisService.setStr("test","fdsf");*/
+        redisService.setStr("test","fdsf");
         TStudent t=new TStudent();
         t.setAge(44);
         t.setName("ces");
-        t.setId(44);
+        t.setId(32);
         tStudentService.add(t);
-		String getConf="hello, sping Cloud!";
+		String getConf="hello, sping Cloud!"+redisService.getStr("test");
 		return getConf;
 	}
 

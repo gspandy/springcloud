@@ -1,0 +1,12 @@
+server:
+     port: 80
+sping:
+     application: 
+        name: 
+           spring-boot-web
+     cloud: 
+       config: 
+          uri: 
+             http://127.0.0.1:8888
+          name: 
+             spring-boot-web

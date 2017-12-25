@@ -16,5 +16,6 @@
         <module>springCloudApiUser</module>
         <module>springCloudConfigServer</module>
         <module>springCloudEurekaServer</module>
+        <module>spring-boot-web</module>
     </modules>
 </project>
