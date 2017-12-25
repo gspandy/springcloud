@@ -1,7 +1,11 @@
 package com.guandou.springcloudapp.main;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,9 +21,13 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(value={"com.guandou.springcloudapp"})//组件扫描
 @EnableDiscoveryClient
 @EnableEurekaClient
+
 public class Application {
+
+    public static Logger logger= LoggerFactory.getLogger(Application.class);
 	public static void main(String[] args) {   
         /* 第一个简单的应用， */
-        SpringApplication.run(Application.class,args);   
+        SpringApplication.run(Application.class,args);
+
     }   
 }
