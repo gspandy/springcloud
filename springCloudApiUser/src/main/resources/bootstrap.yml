@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    config:
+     uri: http://localhost:8888
+     profile: dev #对应业务名称的profile
+     label: master #当配置文件在git上时为分支名
+  application:
+    name: springCloudApiUser  #对应文件的业务名称
+    #spring.cloud.config.uri=http://127.0.0.1:8888
+    #spring.cloud.config.name=springCloudApiUser
+    #spring.cloud.config.profile=${config.profile:dev}

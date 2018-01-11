@@ -1,5 +1,8 @@
 package com.guandou.springcloudapp.sercice;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.guandou.springcloudapp.dao.mysql.entities.GameLand;
 import com.guandou.springcloudapp.dao.mysql.entities.TStudent;
 import com.guandou.springcloudapp.dao.mysql.entities.TStudentExample;
 import com.guandou.springcloudapp.dao.mysql.mapper.TStudentMapper;
@@ -28,4 +31,10 @@ public class TStudentService {
     public List<TStudent> findAccountList(TStudentExample example) {
         return accountMapper.selectByExample(example);
     }
+
+    public PageInfo<TStudent> getList(TStudentExample bean){
+        PageHelper.startPage(1, 6);
+        List<TStudent> data=accountMapper.selectByExample(bean);
+        return new PageInfo<TStudent>(data) ;
+    };
 }

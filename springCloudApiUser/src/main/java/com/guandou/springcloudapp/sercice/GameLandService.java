@@ -1,5 +1,7 @@
 package com.guandou.springcloudapp.sercice;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.guandou.springcloudapp.dao.mysql.entities.GameLand;
 import com.guandou.springcloudapp.dao.mysql.entities.TStudent;
 import com.guandou.springcloudapp.dao.mysql.entities.TStudentExample;
@@ -20,7 +22,14 @@ public class GameLandService {
         return mapper.getByGradeNm("dff");
     };
     public List<GameLand> getListByBean(GameLand bean){
+        PageHelper.startPage(1, 6);
+
         return mapper.getListByBean(bean);
+    };
+    public PageInfo<GameLand> getList(GameLand bean){
+        PageHelper.startPage(1, 6);
+        List<GameLand> data=mapper.getListByBean(bean);
+        return new PageInfo<GameLand>(data) ;
     };
     public Boolean save(GameLand bean){
         return mapper.saveBean(bean);

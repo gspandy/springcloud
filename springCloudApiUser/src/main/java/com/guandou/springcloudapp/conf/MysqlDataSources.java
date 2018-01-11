@@ -6,6 +6,8 @@ package com.guandou.springcloudapp.conf;
 
 import javax.sql.DataSource;
 
+import com.github.pagehelper.PageHelper;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -19,6 +21,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.zaxxer.hikari.HikariDataSource;
+
+import java.util.Properties;
 
 /**
  * mysql数据源
@@ -74,19 +78,27 @@ public class MysqlDataSources {
         return transactionTemplate;
     }
 
-    /**
-     * mybatis 的sessionFactory
-     */
     @Bean(name = "mysqlSessionFactory")
-    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier("mysqlDataSource") DataSource dataSource) throws Exception {
-
+    public SqlSessionFactory sqlSessionFactoryBean(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
-        //扫描mapper.xml
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:mysql/*.xml"));
-
+        Interceptor[] plugins =  new Interceptor[]{pageHelper()};
+        sqlSessionFactoryBean.setPlugins(plugins);
+        // 指定mybatisxml文件路径
+        sqlSessionFactoryBean.setMapperLocations(resolver
+                .getResources("classpath:/mysql/*.xml"));
         return sqlSessionFactoryBean.getObject();
     }
-
+    @Bean
+    public PageHelper pageHelper() {
+        System.out.println("MyBatisConfiguration.pageHelper()");
+        PageHelper pageHelper = new PageHelper();
+        Properties p = new Properties();
+        p.setProperty("offsetAsPageNum", "true");
+        p.setProperty("rowBoundsWithCount", "true");
+        p.setProperty("reasonable", "true");
+        pageHelper.setProperties(p);
+        return pageHelper;
+    }
 }
