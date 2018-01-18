@@ -19,7 +19,7 @@ import com.guandou.springcloudapp.main.Application;
 @WebAppConfiguration
 @TestExecutionListeners(inheritListeners = false, listeners = { DependencyInjectionTestExecutionListener.class,
                                                                 DirtiesContextTestExecutionListener.class })
-@ImportResource(locations = { "/application.properties" })
+@ImportResource(locations = {"/application.properties1"})
 public class BaseCaseTest extends AbstractTestNGSpringContextTests {
 
 }
