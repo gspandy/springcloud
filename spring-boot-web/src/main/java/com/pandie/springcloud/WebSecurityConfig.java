@@ -16,7 +16,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  *
  */
 @Configuration
-public class WebSecurityConfig extends WebMvcConfigurerAdapter {
+public class
+WebSecurityConfig extends WebMvcConfigurerAdapter {
 
 	/**
 	 * 登录session key
