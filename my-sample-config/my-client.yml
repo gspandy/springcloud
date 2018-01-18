@@ -1,23 +1,24 @@
+---
+spring:
 
-
+  application:
+    name: springCloudApp
 server:
-port:8080
-
-#service discovery url
-eureka:client:serviceUrl:defaultZone:http://localhost:9999/eureka/
-
-
-#Hikaridb.mysql config
-db:mysql:
-jdbcUrl:
-jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
-:username:root
-:password:123456
-:driverClassName:com.mysql.jdbc.Driver
-:connectionTestQuery:SELECT 1
-:connectionTimeoutMs:30000
-:idleTimeoutMs:600000
-:maxLifetimeMs:1800000
-:maxPoolSize:20
-:minIdle:20
-:transactionTimeoutS:30
+  port: 8080
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9999/eureka/
+db:
+  mysql:
+    minIdle: 20
+    password: 123456
+    maxLifetimeMs: 1800000
+    connectionTimeoutMs: 30000
+    connectionTestQuery: SELECT 1
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
+    driverClassName: com.mysql.jdbc.Driver
+    idleTimeoutMs: 600000
+    transactionTimeoutS: 30
+    maxPoolSize: 20
+    username: root
