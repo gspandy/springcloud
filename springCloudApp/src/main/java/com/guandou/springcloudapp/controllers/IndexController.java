@@ -7,8 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -31,5 +34,10 @@ public class IndexController {
     public String getAppName() {
         return appName;
     }
-
+ @RequestMapping(value = { "/api/app/test" }, method = { RequestMethod.POST }, produces="application/json;charset=UTF-8")
+ @ResponseBody
+public String cancelCall(HttpServletResponse rsp) {
+         rsp.addHeader("Access-Control-Allow-Origin", "*");
+      return "";
+         }
 }

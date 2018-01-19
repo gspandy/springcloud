@@ -5,12 +5,15 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.pandie.springcloud.enity.RespEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * 控制器 博客出处：http://www.cnblogs.com/GoodHelper/
@@ -18,7 +21,8 @@ import org.springframework.web.bind.annotation.SessionAttribute;
  */
 @Controller
 public class MainController {
-
+    @Autowired
+    private RestTemplate restTemplate;
 	@GetMapping("/")
 	public String index(@SessionAttribute(WebSecurityConfig.SESSION_KEY) String account, Model model) {
 		model.addAttribute("name", account);
@@ -41,9 +45,10 @@ public class MainController {
 
 		// 设置session
 		session.setAttribute(WebSecurityConfig.SESSION_KEY, account);
-
+        String url="http://localhost:8082/hello1";
+        RespEntity user=restTemplate.getForObject(url, RespEntity.class);
 		map.put("success", true);
-		map.put("message", "登录成功");
+		map.put("message", "登录成功"+user);
 		return map;
 	}
 
@@ -53,5 +58,13 @@ public class MainController {
 		session.removeAttribute(WebSecurityConfig.SESSION_KEY);
 		return "redirect:/login";
 	}
+
+
+    @GetMapping("/getHttp")
+    public String getHttp(HttpSession session) {
+        // 移除session
+
+        return "redirect:/login";
+    }
 
 }
