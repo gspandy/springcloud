@@ -34,10 +34,5 @@ public class IndexController {
     public String getAppName() {
         return appName;
     }
- @RequestMapping(value = { "/api/app/test" }, method = { RequestMethod.POST }, produces="application/json;charset=UTF-8")
- @ResponseBody
-public String cancelCall(HttpServletResponse rsp) {
-         rsp.addHeader("Access-Control-Allow-Origin", "*");
-      return "";
-         }
+
 }

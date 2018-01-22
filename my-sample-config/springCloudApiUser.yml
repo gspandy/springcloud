@@ -1,0 +1,45 @@
+---
+spring:
+  
+  application:
+    name: springCloudApiUser
+  redis:
+    password: 123456
+    database: 0
+    port: 6379
+    pool:
+      max-idle: 8
+      min-idle: 0
+      max-active: 8
+      max-wait: -1
+    host: 192.168.10.121
+    timeout: 0
+server:
+  port: 8082
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9999/eureka/
+logging:
+  path: /workspace/log
+  level:
+    com:
+      guandou:
+        springcloudapp:
+          dao:
+            mysql:
+              mapper: warn  
+  config: classpath:logback.xml
+db:
+  mysql:
+    minIdle: 20
+    password: 123456
+    connectionTimeoutMs: 30000
+    maxLifetimeMs: 1800000
+    connectionTestQuery: SELECT 1
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
+    driverClassName: com.mysql.jdbc.Driver
+    idleTimeoutMs: 600000
+    transactionTimeoutS: 30
+    maxPoolSize: 20
+    username: root

@@ -11,7 +11,7 @@ import com.guandou.springcloudapp.dao.mysql.entities.TStudentExample;
 /**
  * student
  */
-@Qualifier("mysqlSessionFactory")
+
 public interface TStudentMapper {
     /**
      * 获取符合条件的记录数

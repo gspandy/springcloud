@@ -37,7 +37,16 @@ public class MainController {
 	@PostMapping("/loginPost")
 	public @ResponseBody Map<String, Object> loginPost(String account, String password, HttpSession session) {
 		Map<String, Object> map = new HashMap<>();
-		if (!"123456".equals(password)) {
+        Map<String, Object> reqmap = new HashMap<>();
+        reqmap.put("age",11);
+
+		if (!"1234561".equals(password)) {
+         /*   String url="http://localhost:8082/hello1?param="+ss;
+            RespEntity user=restTemplate.getForObject(url, RespEntity.class);*/
+
+            String json="{'mobile':'13949151980','type':'topapi-signup','vcode':'123456'}";
+            String url = "http://localhost:8082/hello1?param={json}";
+
 			map.put("success", false);
 			map.put("message", "密码错误");
 			return map;
@@ -45,10 +54,9 @@ public class MainController {
 
 		// 设置session
 		session.setAttribute(WebSecurityConfig.SESSION_KEY, account);
-        String url="http://localhost:8082/hello1";
-        RespEntity user=restTemplate.getForObject(url, RespEntity.class);
+
 		map.put("success", true);
-		map.put("message", "登录成功"+user);
+		map.put("message", "登录成功");
 		return map;
 	}
 

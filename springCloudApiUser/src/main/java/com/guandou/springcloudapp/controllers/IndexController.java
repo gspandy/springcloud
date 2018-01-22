@@ -12,6 +12,7 @@ import com.guandou.springcloudapp.dao.mysql.entities.TStudentExample;
 import com.guandou.springcloudapp.sercice.GameLandService;
 import com.guandou.springcloudapp.sercice.RedisService;
 import com.guandou.springcloudapp.sercice.TStudentService;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,14 +55,25 @@ public class IndexController {
 		return getConf;
 	}
     @RequestMapping("/hello1")
-    public RespEntity hellow1(@RequestBody String param) {
+    public RespEntity hellow1(@RequestParam("param") String param) {
         logger.info("启动 hello1接口");
 
-        TStudentExample TS=new TStudentExample();
-        List<TStudent> data= tStudentService.findAccountList(TS);
         RespEntity resq=new RespEntity();
-        resq.setRespCode(RespCode.SUCCESS);
-        resq.setData(data);
+        try{
+
+            TStudentExample TS=new TStudentExample();
+            System.out.println(param);
+            JSONObject json = JSONObject.fromObject(param);
+            RespEntity respEntity=(RespEntity)JSONObject.toBean(json, RespEntity.class);
+            List<TStudent> data= tStudentService.findAccountList(TS);
+            resq.setRespCode(RespCode.SUCCESS);
+            resq.setData(data);
+        }catch (Exception e){
+            e.printStackTrace();
+            resq.setRespCode(RespCode.ERROT);
+            resq.setData(e);
+        }
+
         return resq;
     }
 
