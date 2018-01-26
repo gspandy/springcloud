@@ -12,6 +12,7 @@ import com.guandou.springcloudapp.dao.mysql.entities.TStudentExample;
 import com.guandou.springcloudapp.sercice.GameLandService;
 import com.guandou.springcloudapp.sercice.RedisService;
 import com.guandou.springcloudapp.sercice.TStudentService;
+import io.swagger.annotations.*;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Api(value="用户controller",tags={"用户操作接口"})
 @RestController
 public class IndexController {
     @Autowired
@@ -54,24 +55,31 @@ public class IndexController {
         String getConf="hello, sping Cloud!"+redisService.getStr("test");
 		return getConf;
 	}
+    @ApiOperation(value="创建用户", notes="根据User对象创建用户")
+
+  /*  @ApiImplicitParam(name = "param", value = "用户详细实体user的josn", required = true, dataType = "String")
+*/
     @RequestMapping("/hello1")
     public RespEntity hellow1(@RequestParam("param") String param) {
+   //public RespEntity hellow1( @RequestBody @ApiParam(name="用户对象",value="传入json格式",required=true) TStudent bean) {
+
+
         logger.info("启动 hello1接口");
 
         RespEntity resq=new RespEntity();
         try{
 
             TStudentExample TS=new TStudentExample();
-            System.out.println(param);
-            JSONObject json = JSONObject.fromObject(param);
-            RespEntity respEntity=(RespEntity)JSONObject.toBean(json, RespEntity.class);
+            //System.out.println(param);
+           // JSONObject json = JSONObject.fromObject(param);
+            //RespEntity respEntity=(RespEntity)JSONObject.toBean(json, RespEntity.class);
             List<TStudent> data= tStudentService.findAccountList(TS);
             resq.setRespCode(RespCode.SUCCESS);
             resq.setData(data);
         }catch (Exception e){
             e.printStackTrace();
             resq.setRespCode(RespCode.ERROT);
-            resq.setData(e);
+            resq.setData(e.toString());
         }
 
         return resq;

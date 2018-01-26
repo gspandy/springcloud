@@ -2,11 +2,14 @@ package com.guandou.springcloudapp.dao.mysql.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.swagger.annotations.ApiModel;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * student
  */
+
 public class TStudentExample {
     // 顺序排序
     public static final String ORDERBYDIRECTION_ASC = "asc";

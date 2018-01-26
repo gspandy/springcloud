@@ -1,14 +1,12 @@
-package com.guandou.springcloudapp.dao.mysql.entities;
+package com.pandie.springcloud.enity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * student
  */
-@ApiModel(value="user对象",description="用户对象user")
+
 @XmlRootElement(name = "tStudent")
 public class TStudent {
     /**
@@ -19,7 +17,7 @@ public class TStudent {
     /**
      * student.Name
      */
-    @ApiModelProperty(value="用户名",name="username",example="xingguo")
+
     private String name;
 
     /**

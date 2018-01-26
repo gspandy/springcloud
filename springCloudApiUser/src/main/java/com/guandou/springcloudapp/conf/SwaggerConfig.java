@@ -31,8 +31,8 @@ public class SwaggerConfig{
 //               .enable(false)   //禁止使用
                 .apiInfo(apiInfo())
                 .select()
-//               .apis(RequestHandlerSelectors.basePackage("com.boot"))
-                .apis(swaggerSelector)
+               .apis(RequestHandlerSelectors.basePackage("com.guandou"))
+               /* .apis(swaggerSelector)*/
                 .paths(PathSelectors.any())
                 .build();
     }

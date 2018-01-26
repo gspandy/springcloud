@@ -31,7 +31,7 @@ public class SwaggerConfig{
 //               .enable(false)   //禁止使用
                 .apiInfo(apiInfo())
                 .select()
-//               .apis(RequestHandlerSelectors.basePackage("com.boot"))
+              .apis(RequestHandlerSelectors.basePackage("com.guandou.springcloudapp.controllers"))
                 .apis(swaggerSelector)
                 .paths(PathSelectors.any())
                 .build();
