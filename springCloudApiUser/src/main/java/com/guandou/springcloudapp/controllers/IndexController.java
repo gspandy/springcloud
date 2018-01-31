@@ -36,7 +36,7 @@ public class IndexController {
 	@RequestMapping("/hello")
 	public String hellow() {
         logger.info("启动 hello接口");
-       redisService.setStr("test","fdsf");
+     redisService.setStr("test","fdsf");
         TStudent t=new TStudent();
         t.setAge(44);
         t.setName("ces");
@@ -51,8 +51,8 @@ public class IndexController {
         List<TStudent> data= tStudentService.findAccountList(TS);
         PageInfo<TStudent> pageInfo = new PageInfo<>(data);
        RespCode.SUCCESS.getCode();
-
-        String getConf="hello, sping Cloud!"+redisService.getStr("test");
+//        +redisService.getStr("test")
+        String getConf="hello, sping Cloud!";
 		return getConf;
 	}
     @ApiOperation(value="创建用户", notes="根据User对象创建用户")
@@ -70,9 +70,9 @@ public class IndexController {
         try{
 
             TStudentExample TS=new TStudentExample();
-            //System.out.println(param);
-           // JSONObject json = JSONObject.fromObject(param);
-            //RespEntity respEntity=(RespEntity)JSONObject.toBean(json, RespEntity.class);
+            System.out.println(param);
+            JSONObject json = JSONObject.fromObject(param);
+            RespEntity respEntity=(RespEntity)JSONObject.toBean(json, RespEntity.class);
             List<TStudent> data= tStudentService.findAccountList(TS);
             resq.setRespCode(RespCode.SUCCESS);
             resq.setData(data);
